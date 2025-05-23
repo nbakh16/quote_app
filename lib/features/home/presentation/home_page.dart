@@ -72,17 +72,22 @@ class _HomePageState extends State<HomePage> {
                   itemBuilder: (context, index) {
                     bool quoteOwner = data[index].addedBy == cubit.userEmail;
 
-                    return Card(
-                      child: ListTile(
-                        title: Text(data[index].quote),
-                        subtitle: Text(data[index].author),
-                        trailing: quoteOwner
-                            ? Icon(
-                                Icons.edit,
-                                size: 14,
-                                color: Colors.purple,
-                              )
-                            : null,
+                    return InkWell(
+                      onTap: () {
+                        quoteDialog(context, quote: data[index]);
+                      },
+                      child: Card(
+                        child: ListTile(
+                          title: Text(data[index].quote),
+                          subtitle: Text(data[index].author),
+                          trailing: quoteOwner
+                              ? Icon(
+                                  Icons.edit,
+                                  size: 14,
+                                  color: Colors.purple,
+                                )
+                              : null,
+                        ),
                       ),
                     );
                   },
@@ -94,6 +99,36 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<dynamic> quoteDialog(BuildContext context,
+      {required QuoteModel quote}) {
+    return showDialog(
+        context: context,
+        builder: (_) {
+          return AlertDialog(
+            content: Column(
+              spacing: 6,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(quote.quote, style: TextStyle(fontSize: 18), maxLines: 10),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    '—${quote.author}',
+                    style: TextStyle(fontSize: 14),
+                  ),
+                ),
+                SizedBox(height: 12),
+                Text('Added by: ${quote.addedBy}',
+                    style: TextStyle(fontSize: 12, color: Colors.black54),
+                    maxLines: 10),
+                SizedBox(height: 12),
+                TextButton(onPressed: context.pop, child: Text('Okay'))
+              ],
+            ),
+          );
+        });
   }
 
   AppBar _buildAppBar(BuildContext context) {
