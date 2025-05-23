@@ -1,16 +1,31 @@
-# quote_app
+# Quote App
 
-A new Flutter project.
+A demo quote app showcasing Firebase integration
 
-## Getting Started
+### Features:
+- User Login/Signup
+- Add Quote
+- Update/Delete own quote
+- View all quotes
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installation:
+1. Create Firebase project
+2. Install Flutterfire cli:
+   
+    `npm install -g firebase-tools`
+   
+    `firebase login`
+   
+    `dart pub global activate flutterfire_cli`
+   
+4. Connect Firebase project with Flutter app:
+   
+    go to project directory
+   
+    `flutterfire configure`
+   
+    select project
+   
+    select platforms
+   
+    all necessary files will be added
