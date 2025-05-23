@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 import 'package:quote_app/features/auth/presentation/auth_page.dart';
 import 'package:quote_app/features/home/presentation/home_page.dart';
+import 'package:quote_app/features/home/presentation/create_quote.dart';
 import 'error_screen.dart';
 import 'routes_path.dart';
 
@@ -19,6 +20,11 @@ class AppRouter {
         name: HomePage.routeName,
         builder: (context, state) =>
             HomePage(userEmail: state.extra.toString()),
+      ),
+      GoRoute(
+        path: AppRoutePath.addQuote,
+        name: CreateQuote.routeName,
+        builder: (context, state) => const CreateQuote(),
       ),
     ],
     errorBuilder: (context, state) => const ErrorScreen(),
